@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +21,28 @@ class ViewController: UIViewController {
         alert.addAction(okAction)
         present(alert,animated:true,completion:nil)
     }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
 
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // let isFolder = data.rows[indexPath.row].isFolder;
+        let isFolder = true
+        
+        if isFolder {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "folder", for: indexPath)
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "route", for: indexPath)
+            
+            return cell
+        }
+    }
 }
 
